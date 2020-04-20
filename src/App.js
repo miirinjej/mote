@@ -12,6 +12,7 @@ function App() {
           far: 1000,
           position: [ 0, 0, 70 ],
         }}
+        onCreated={({ gl }) => gl.setClearColor(0xffe7bd)}
       />
     </div>
   );
