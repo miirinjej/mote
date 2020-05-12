@@ -18,7 +18,9 @@ function App() {
       >
         <hemisphereLight />
         <pointLight position={[ 10, 10, 10 ]} />
-        <Track />
+        <Suspense fallback={null}>
+          <Track />
+        </Suspense>
         <Suspense fallback={null}>
           <Character />
         </Suspense>

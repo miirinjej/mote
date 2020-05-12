@@ -1,12 +1,18 @@
 import * as THREE from 'three';
 import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
+import { useLoader } from 'react-three-fiber';
 
 const geometry = new THREE.BoxGeometry(5, 1, 26);
-const material = new THREE.MeshBasicMaterial({ color: 0xff0000 });
 
 export default function Track({ position }) {
   const mesh = useRef();
+  const texture = useLoader(THREE.TextureLoader, 'textures/Lava_001_COLOR.png');
+  const material = new THREE.MeshBasicMaterial({ map: texture });
+
+  texture.wrapS = THREE.RepeatWrapping;
+  texture.wrapT = THREE.RepeatWrapping;
+  texture.repeat.set(4, 16);
 
   return (
     <group
