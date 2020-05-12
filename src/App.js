@@ -2,6 +2,7 @@ import React, { Suspense } from 'react';
 import { Canvas } from 'react-three-fiber';
 import './App.scss';
 import Character from './components/3d/Character';
+import Track from './components/3d/Track';
 
 function App() {
   return (
@@ -13,10 +14,11 @@ function App() {
           far: 1000,
           position: [ 0, 0.5, -3 ],
         }}
-        onCreated={({ gl }) => gl.setClearColor(0xffe7bd)}
+        onCreated={({ gl }) => { gl.setClearColor(0xffe7bd); gl.sortObjects = false; }}
       >
         <hemisphereLight />
         <pointLight position={[ 10, 10, 10 ]} />
+        <Track />
         <Suspense fallback={null}>
           <Character />
         </Suspense>
