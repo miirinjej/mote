@@ -1,3 +1,4 @@
+import * as THREE from 'three';
 import React, { Suspense } from 'react';
 import { Canvas } from 'react-three-fiber';
 import './App.scss';
@@ -14,7 +15,10 @@ function App() {
           far: 1000,
           position: [ 0, 0.5, -3 ],
         }}
-        onCreated={({ gl }) => { gl.setClearColor(0xffe7bd); gl.sortObjects = false; }}
+        onCreated={({ gl, scene }) => {
+          gl.sortObjects = false;
+          scene.background = new THREE.Color(0xffe7bd);
+        }}
       >
         <hemisphereLight />
         <pointLight position={[ 10, 10, 10 ]} />
