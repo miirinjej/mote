@@ -6,6 +6,9 @@ import Character from './components/3d/Character';
 import Track from './components/3d/Track';
 
 function App() {
+  const fogColor = new THREE.Color(0xffe7bd);
+  const fogDensity = 0.068;
+
   return (
     <div className="scene">
       <Canvas
@@ -17,7 +20,8 @@ function App() {
         }}
         onCreated={({ gl, scene }) => {
           gl.sortObjects = false;
-          scene.background = new THREE.Color(0xffe7bd);
+          scene.background = fogColor;
+          scene.fog = new THREE.FogExp2(fogColor, fogDensity);
         }}
       >
         <hemisphereLight />
