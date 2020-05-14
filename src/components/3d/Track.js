@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
-import { useLoader } from 'react-three-fiber';
+import { useFrame, useLoader } from 'react-three-fiber';
 
 const geometry = new THREE.BoxGeometry(5, 1, 26);
 
@@ -13,6 +13,11 @@ export default function Track({ position }) {
   texture.wrapS = THREE.RepeatWrapping;
   texture.wrapT = THREE.RepeatWrapping;
   texture.repeat.set(4, 16);
+
+
+  useFrame(() => {
+    texture.offset.y -= 0.03;
+  });
 
   return (
     <group
