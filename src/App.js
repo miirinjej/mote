@@ -1,3 +1,4 @@
+import * as THREE from 'three';
 import React, { Suspense } from 'react';
 import { Canvas } from 'react-three-fiber';
 import './App.scss';
@@ -5,6 +6,9 @@ import Character from './components/3d/Character';
 import Track from './components/3d/Track';
 
 function App() {
+  const fogColor = new THREE.Color(0xffe7bd);
+  const fogDensity = 0.068;
+
   return (
     <div className="scene">
       <Canvas
@@ -14,7 +18,11 @@ function App() {
           far: 1000,
           position: [ 0, 0.5, -3 ],
         }}
-        onCreated={({ gl }) => { gl.setClearColor(0xffe7bd); gl.sortObjects = false; }}
+        onCreated={({ gl, scene }) => {
+          gl.sortObjects = false;
+          scene.background = fogColor;
+          scene.fog = new THREE.FogExp2(fogColor, fogDensity);
+        }}
       >
         <hemisphereLight />
         <pointLight position={[ 10, 10, 10 ]} />
